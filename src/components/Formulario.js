@@ -4,6 +4,9 @@ import Criptomoneda from './Criptomoneda';
 
 const Formulario = () => {
   const [ criptomonedas, guardarCriptomonedas ] = useState([]);
+  const [ modenaCotizar, guardarMonedaCotizar ] = useState('');
+  const [ criptoCotizar, guardarCriptoCotizar ] = useState('');
+  const [ error, guardarError ] = useState(false);
 
   useEffect(() => {
     const consultarAPI = async () => {
@@ -22,7 +25,9 @@ const Formulario = () => {
     <form>
       <div className="row">
         <label htmlFor="">Elige tu Moneda</label>
-        <select name="" id="" className="u-full-width">
+        <select name="" id="" className="u-full-width"
+          onChange={ e => guardarMonedaCotizar(e.target.value) }
+        >
           <option value="">-- Elige tu moneda --</option>
           <option value="USD">Dolar Estadounidense</option>
           <option value="MXN">Peso Mexicano</option>
@@ -32,7 +37,10 @@ const Formulario = () => {
       </div>
       <div className="row">
         <label htmlFor="">Elige tu Criptomoneda</label>
-        <select className="u-full-width">
+        <select className="u-full-width"
+          onChange={ e => guardarCriptoCotizar(e.target.value) }
+        >
+          <option value="">-- Elige tu criptomoneda --</option>
           {
             criptomonedas.map(criptomoneda => (
               <Criptomoneda 
