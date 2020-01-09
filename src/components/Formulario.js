@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Criptomoneda from './Criptomoneda';
 import Error from './Error';
 
-const Formulario = () => {
+const Formulario = ({guardarMoneda, guardarCriptomoneda}) => {
   const [ criptomonedas, guardarCriptomonedas ] = useState([]);
   const [ modenaCotizar, guardarMonedaCotizar ] = useState('');
   const [ criptoCotizar, guardarCriptoCotizar ] = useState('');
@@ -35,6 +35,8 @@ const Formulario = () => {
     
     // pasar al campo principal
     guardarError(false);
+    guardarMoneda(modenaCotizar);
+    guardarCriptomoneda(criptoCotizar)
   }
 
   //Mostrar el error en caso de que exista
